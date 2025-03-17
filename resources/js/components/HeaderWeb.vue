@@ -16,8 +16,8 @@ const mobileMenuOpen = ref(false)
 
         <!-- Navegación en desktop -->
         <div class="hidden md:flex gap-4">
-          <Link href="#" class="text-sm text-[#1b1b18] hover:underline dark:text-[#EDEDEC]">Inicio</Link>
-          <Link href="#" class="text-sm text-[#1b1b18] hover:underline dark:text-[#EDEDEC]">Servicios</Link>
+          <Link :href="route('home')" class="text-sm text-[#1b1b18] hover:underline dark:text-[#EDEDEC]">Inicio</Link>
+          <Link :href="route('ListServices')" class="text-sm text-[#1b1b18] hover:underline dark:text-[#EDEDEC]">Servicios</Link>
           <Link href="#" class="text-sm text-[#1b1b18] hover:underline dark:text-[#EDEDEC]">Proyectos</Link>
           <Link href="#" class="text-sm text-[#1b1b18] hover:underline dark:text-[#EDEDEC]">Contacto</Link>
         </div>
