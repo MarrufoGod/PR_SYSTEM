@@ -1,11 +1,31 @@
+<script setup>
+import PhotoUser from './PhotoUser.vue';
+import ProjectCard from './ProjectCard.vue';
+</script>
 
 <template>
-    <div class="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-[#1a1a1a]">
-      <div class="w-full md:w-2/5 bg-[#f5f5f5] dark:bg-[#2c2c2a] p-6 rounded-lg shadow">
-        <form @submit.prevent>
-          <!-- Todo tu formulario aquí -->
-          <form @submit.prevent>
-  <!-- First Name -->
+  <div class="min-h-screen flex flex-col md:flex-row items-start justify-center bg-gray-100 dark:bg-[#1a1a1a] p-4 md:p-8 gap-6">
+    
+    <!-- Imagen a la izquierda -->
+    <div class="w-full md:w-1/3 flex justify-center items-center">
+      <PhotoUser />
+    </div>
+
+    <!-- Formulario a la derecha -->
+    <div class="w-full md:w-2/3 bg-[#f5f5f5] dark:bg-[#2c2c2a] p-6 rounded-lg shadow">
+      <form @submit.prevent>
+        <!-- Nombre -->
+        <div class="mb-4">
+          <label class="block text-sm mb-1 text-[#1b1b18] dark:text-[#EDEDEC]" for="first-name">First Name</label>
+          <input
+            id="first-name"
+            type="text"
+            class="w-full px-3 py-2 rounded border border-gray-300 dark:border-[#555] dark:bg-[#1b1b18] dark:text-white focus:outline-none focus:ring-2 focus:ring-[#1b1b18] dark:focus:ring-[#EDEDEC] transition"
+            placeholder="First Name"
+          />
+        </div>
+
+        <!-- First Name -->
   <div class="mb-4">
     <label class="block text-sm mb-1 text-[#1b1b18] dark:text-[#EDEDEC]" for="first-name">First Name</label>
     <input
@@ -129,19 +149,19 @@
   </div>
 
   <!-- Update Button -->
-  <div class="flex justify-end">
-    <button
-      type="submit"
-      class="bg-[#1b1b18] text-white px-4 py-2 rounded hover:bg-[#333] dark:bg-[#EDEDEC] dark:text-[#1b1b18] dark:hover:bg-[#d6d6d6] transition"
-    >
-      Update
-    </button>
-  </div>
-</form>
-        </form>
-      </div>
+        <div class="flex justify-end">
+          <button
+            type="submit"
+            class="bg-[#1b1b18] text-white px-4 py-2 rounded hover:bg-[#333] dark:bg-[#EDEDEC] dark:text-[#1b1b18] dark:hover:bg-[#d6d6d6] transition"
+          >
+            Update
+          </button>
+        </div>
+      </form>
     </div>
-  </template>
+  </div>
   
-  
-  
+  <div class="w-full md:w-1/3 flex justify-center items-center">
+    <ProjectCard/>
+    </div>
+</template>
