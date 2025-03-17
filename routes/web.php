@@ -9,6 +9,12 @@ Route::get('/', function () {
 Route::get('/Services', function () {
     return Inertia::render('Services');
 })->name('ListServices');
+Route::get('/SendToFriend', function () {
+    return Inertia::render('SendFriend');
+})->name('SendF');
+Route::get('/Myservices', function () {
+    return Inertia::render('ProfileFormV');
+})->name('ProfileF');
 
 Route::get('dashboard', function () {
     return Inertia::render('Dashboard');

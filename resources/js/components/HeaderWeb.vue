@@ -18,8 +18,8 @@ const mobileMenuOpen = ref(false)
         <div class="hidden md:flex gap-4">
           <Link :href="route('home')" class="text-sm text-[#1b1b18] hover:underline dark:text-[#EDEDEC]">Inicio</Link>
           <Link :href="route('ListServices')" class="text-sm text-[#1b1b18] hover:underline dark:text-[#EDEDEC]">Servicios</Link>
-          <Link href="#" class="text-sm text-[#1b1b18] hover:underline dark:text-[#EDEDEC]">Proyectos</Link>
-          <Link href="#" class="text-sm text-[#1b1b18] hover:underline dark:text-[#EDEDEC]">Contacto</Link>
+          <Link :href="route('ProfileF')" class="text-sm text-[#1b1b18] hover:underline dark:text-[#EDEDEC]">Proyectos</Link>
+          <Link :href="route('SendF')" class="text-sm text-[#1b1b18] hover:underline dark:text-[#EDEDEC]">SendToFriend</Link>
         </div>
 
         <!-- Botones de login/registro -->
