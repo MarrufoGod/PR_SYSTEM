@@ -22,6 +22,10 @@ export default defineConfig({
             },
         }),
     ],
+    server: {
+        host: 'localhost', // Evita problemas con IPv6 ([::1])
+        port: 5173, // Usa un puerto específico si 5175 falla
+      },
     resolve: {
         alias: {
             '@': path.resolve(__dirname, './resources/js'),

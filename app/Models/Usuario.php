@@ -21,7 +21,7 @@ class Usuario extends Authenticatable
         'remember_token',
     ];
 
-    protected $hidden = ['PASSWORD'];
+    protected $hidden = ['PASSWORD','remember_token'];
 
     public function getAuthPassword()
     {

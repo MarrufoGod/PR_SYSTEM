@@ -56,7 +56,7 @@ class CustomRegisterController extends Controller
         // 4. Iniciar sesión automáticamente
         Auth::login($user);
 
-        return redirect()->route('dashboard');
+        return redirect()->route('home');
     }
 
     // Función para generar un ID único

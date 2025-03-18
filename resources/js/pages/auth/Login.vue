@@ -25,7 +25,7 @@ const securityQuestions = [
 ];
 
 const submit = () => {
-    form.post(route('login.custom'), {
+    form.post(route('login'), {
         onFinish: () => form.reset('password', 'security_answer'),
     });
 };

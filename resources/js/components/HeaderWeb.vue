@@ -1,17 +1,28 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import { Link } from '@inertiajs/vue3'
+import { ref, computed } from 'vue';
+import { Link, usePage } from '@inertiajs/vue3';
 
-const mobileMenuOpen = ref(false)  // Estado para el menú en móvil
-const isAuthenticated = ref(false) // Estado para verificar si el usuario está autenticado
 
-// Configurar el estado de autenticación al cargar la página
-onMounted(() => {
-  const userData = JSON.parse(document.getElementById('app')?.dataset.user || 'null')
-  if (userData) {
-    isAuthenticated.value = true
-  }
-})
+interface Auth {
+  user: {
+    id: number;
+    name: string;
+    email: string;
+    // otras propiedades del usuario
+  } | null;  // El usuario puede ser null si no está autenticado
+}
+
+interface PageProps {
+  auth: Auth;
+  [key: string]: any; 
+  // otras propiedades si las tienes
+}
+
+const mobileMenuOpen = ref(false);
+
+// Obtenemos las props de la página actual
+const page = usePage<PageProps>();  // Aquí indicamos el tipo de las props
+const isAuthenticated = computed(() => !!(page.props.auth?.user)); // Verificamos si hay un usuario autenticado
 </script>
 
 
@@ -49,10 +60,9 @@ onMounted(() => {
             </Link>
           </template>
           
-          <!-- Mostrar el botón "Mi perfil" cuando el usuario esté autenticado -->
           <template v-if="isAuthenticated">
             <Link
-              :href="route('profile')"
+              :href="route('ProfileF')"
               class="inline-block rounded-sm border border-transparent px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#19140035] dark:text-[#EDEDEC] dark:hover:border-[#3E3E3A]"
             >
               Mi perfil
@@ -86,17 +96,13 @@ onMounted(() => {
             </button>
           </div>
           <nav class="flex flex-col gap-4">
-            <Link href="#" class="text-sm text-[#1b1b18] hover:underline dark:text-[#EDEDEC]">Inicio</Link>
-            <Link href="#" class="text-sm text-[#1b1b18] hover:underline dark:text-[#EDEDEC]">Servicios</Link>
-            <Link href="#" class="text-sm text-[#1b1b18] hover:underline dark:text-[#EDEDEC]">Proyectos</Link>
-            <Link href="#" class="text-sm text-[#1b1b18] hover:underline dark:text-[#EDEDEC]">Contacto</Link>
+            <Link :href="route('home')" class="text-sm text-[#1b1b18] hover:underline dark:text-[#EDEDEC]">Inicio</Link>
+            <Link :href="route('ListServices')" class="text-sm text-[#1b1b18] hover:underline dark:text-[#EDEDEC]">Servicios</Link>
+            <Link :href="route('ProfileF')" class="text-sm text-[#1b1b18] hover:underline dark:text-[#EDEDEC]">Proyectos</Link>
+            <Link :href="route('SendF')" class="text-sm text-[#1b1b18] hover:underline dark:text-[#EDEDEC]">SendToFriend</Link>
           </nav>
         </div>
       </transition>
     </nav>
   </header>
 </template>
-
-<style scoped>
-/* Tu estilo aquí */
-</style>

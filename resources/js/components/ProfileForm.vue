@@ -1,6 +1,16 @@
-<script setup>
+<script setup lang="ts">
+import { usePage } from '@inertiajs/vue3';
 import PhotoUser from './PhotoUser.vue';
 import ProjectCard from './ProjectCard.vue';
+interface User {
+  ID: string;
+  EMAIL: string;
+}
+
+const { props } = usePage();
+const user = props.auth?.user as User;  // Acceso correcto a auth.user
+
+const isAuthenticated = !!user; // Si el usuario está presente, está autenticado
 </script>
 
 <template>
@@ -14,9 +24,19 @@ import ProjectCard from './ProjectCard.vue';
     <!-- Formulario a la derecha -->
     <div class="w-full md:w-2/3 bg-[#f5f5f5] dark:bg-[#2c2c2a] p-6 rounded-lg shadow">
       <form @submit.prevent>
+        <!-- ID -->
+        <div class="mb-4">
+          <label class="block text-sm mb-1 text-[#1b1b18] dark:text-[#EDEDEC]" for="first-name"> {{ user.ID }}</label>
+          <input
+            id="first-name"
+            type="text"
+            class="w-full px-3 py-2 rounded border border-gray-300 dark:border-[#555] dark:bg-[#1b1b18] dark:text-white focus:outline-none focus:ring-2 focus:ring-[#1b1b18] dark:focus:ring-[#EDEDEC] transition"
+            placeholder="First Name"
+          />
+        </div>
         <!-- Nombre -->
         <div class="mb-4">
-          <label class="block text-sm mb-1 text-[#1b1b18] dark:text-[#EDEDEC]" for="first-name">First Name</label>
+          <label class="block text-sm mb-1 text-[#1b1b18] dark:text-[#EDEDEC]" for="first-name"> Name</label>
           <input
             id="first-name"
             type="text"
