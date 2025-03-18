@@ -1,9 +1,19 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { Link } from '@inertiajs/vue3'
 
-const mobileMenuOpen = ref(false)
+const mobileMenuOpen = ref(false)  // Estado para el menú en móvil
+const isAuthenticated = ref(false) // Estado para verificar si el usuario está autenticado
+
+// Configurar el estado de autenticación al cargar la página
+onMounted(() => {
+  const userData = JSON.parse(document.getElementById('app')?.dataset.user || 'null')
+  if (userData) {
+    isAuthenticated.value = true
+  }
+})
 </script>
+
 
 <template>
   <header>
@@ -22,20 +32,32 @@ const mobileMenuOpen = ref(false)
           <Link :href="route('SendF')" class="text-sm text-[#1b1b18] hover:underline dark:text-[#EDEDEC]">SendToFriend</Link>
         </div>
 
-        <!-- Botones de login/registro -->
+        <!-- Botones de login/registro o perfil -->
         <div class="flex gap-2">
-          <Link
-            :href="route('login')"
-            class="inline-block rounded-sm border border-transparent px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#19140035] dark:text-[#EDEDEC] dark:hover:border-[#3E3E3A]"
-          >
-            Log in
-          </Link>
-          <Link
-            :href="route('register')"
-            class="inline-block rounded-sm border border-[#19140035] px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#1915014a] dark:border-[#3E3E3A] dark:text-[#EDEDEC] dark:hover:border-[#62605b]"
-          >
-            Register
-          </Link>
+          <template v-if="!isAuthenticated">
+            <Link
+              :href="route('login')"
+              class="inline-block rounded-sm border border-transparent px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#19140035] dark:text-[#EDEDEC] dark:hover:border-[#3E3E3A]"
+            >
+              Log in
+            </Link>
+            <Link
+              :href="route('register')"
+              class="inline-block rounded-sm border border-[#19140035] px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#1915014a] dark:border-[#3E3E3A] dark:text-[#EDEDEC] dark:hover:border-[#62605b]"
+            >
+              Register
+            </Link>
+          </template>
+          
+          <!-- Mostrar el botón "Mi perfil" cuando el usuario esté autenticado -->
+          <template v-if="isAuthenticated">
+            <Link
+              :href="route('profile')"
+              class="inline-block rounded-sm border border-transparent px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#19140035] dark:text-[#EDEDEC] dark:hover:border-[#3E3E3A]"
+            >
+              Mi perfil
+            </Link>
+          </template>
 
           <!-- Menú hamburguesa en móvil -->
           <button
@@ -76,20 +98,5 @@ const mobileMenuOpen = ref(false)
 </template>
 
 <style scoped>
-.slide-enter-active,
-.slide-leave-active {
-  transition: transform 0.3s ease;
-}
-.slide-enter-from {
-  transform: translateX(100%);
-}
-.slide-enter-to {
-  transform: translateX(0%);
-}
-.slide-leave-from {
-  transform: translateX(0%);
-}
-.slide-leave-to {
-  transform: translateX(100%);
-}
+/* Tu estilo aquí */
 </style>
