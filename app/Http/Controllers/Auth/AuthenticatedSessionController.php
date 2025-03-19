@@ -42,7 +42,7 @@ class AuthenticatedSessionController extends Controller
         case 'CO':
             return redirect()->route('contratista.dashboard');
         case 'AD':
-            return redirect()->route('admin.dashboard');
+            return redirect()->route('dashboard');
         default:
             Auth::logout();
             return redirect()->route('login')->withErrors(['identifier' => 'Rol no permitido.']);

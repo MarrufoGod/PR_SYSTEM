@@ -38,7 +38,7 @@ class CustomRegisterController extends Controller
             'PASSWORD' => Hash::make($validated['password']),
             'SECURITY_QUESTION' => $validated['security_question'], // texto visible
             'SECURITY_ANSWER' => Hash::make($validated['security_answer']), // encriptado
-            'ID_ROLE' => 'CL', // Puedes ajustar esto si manejas roles al registrar
+            'ID_ROLE' => 'AD', // Puedes ajustar esto si manejas roles al registrar
         ]);
 
         // 3. Crear el cliente relacionado

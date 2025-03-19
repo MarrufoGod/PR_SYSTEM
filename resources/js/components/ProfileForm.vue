@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { usePage } from '@inertiajs/vue3';
 import PhotoUser from './PhotoUser.vue';
-import ProjectCard from './ProjectCard.vue';
+
 import { PageProps } from '@/types/inertia';
 import { Link } from '@inertiajs/vue3'; // Importa Link para redirigir
 
@@ -186,9 +186,7 @@ const isAuthenticated = !!user; // Si el usuario está presente, está autentica
         </form>
       </div>
 
-      <div class="w-full md:w-1/3 flex justify-center items-center">
-        <ProjectCard />
-      </div>
+      
     </div>
 
     <!-- Mostrar mensaje si no está autenticado -->

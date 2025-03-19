@@ -1,5 +1,7 @@
 <template>
-  <footer class="bg-zinc-50 dark:bg-neutral-800 text-surface dark:text-white">
+<div class="flex flex-col min-h-screen:">
+  <main class="flex-grow">
+<footer class="bg-zinc-50 dark:bg-neutral-800 text-surface dark:text-white">
     <div class="container mx-auto px-6 py-10">
       <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         <!-- Columna 1 -->
@@ -47,6 +49,9 @@
       © 2025 TuEmpresa. Todos los derechos reservados.
     </div>
   </footer>
+</main>
+</div>
+  
 </template>
 
 <style scoped>

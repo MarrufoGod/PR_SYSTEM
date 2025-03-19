@@ -10,7 +10,7 @@ class Category extends Model
     use HasFactory;
 
     // Definir la tabla que este modelo representará
-    protected $table = 'categories';
+    protected $table = 'CATEGORY';
 
     // Definir los campos que son asignables
     protected $fillable = [
