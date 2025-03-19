@@ -75,10 +75,8 @@ class CustomLoginController extends Controller
     //dd(Auth::user()->ID); // Para obtener el ID del usuario
    
     logger()->info('Usuario autenticado:', ['id' => $user->ID]);
-    return Inertia::render('Welcome', [
-        'user' => Auth::user()  // Pasa el usuario autenticado a la vista
-    ]);
     
+ 
     // Redirección según el rol
     switch ($user->ID_ROLE) {
         case 'CL':

@@ -2,6 +2,7 @@
 <script setup lang="ts">
 import { usePage } from '@inertiajs/vue3';
 import { PageProps } from '@/types/inertia'
+import { computed } from 'vue';
 import { ref, onMounted } from 'vue';
 import { Head, Link } from '@inertiajs/vue3';
 import HeaderWeb from '../components/HeaderWeb.vue';
@@ -14,19 +15,15 @@ interface User {
   // Si necesitas más propiedades del usuario, agrégalas aquí.
 }
 
-const { props } = usePage();
-const user = props.user as User;  // Aquí indicamos que user es del tipo User.
-const isAuthenticated = !!user; // Si el usuario está presente, es que está autenticado
+const page = usePage<PageProps>(); // Usa usePage con el tipo correcto
+const user = computed(() => page.props.user as User); // Haz user reactivo
+const isAuthenticated = computed(() => !!user.value); // Haz isAuthenticated reactivo
 </script>
 <template>
   <div>
     <Head title="Inicio" />
     <!-- Pasamos el estado de autenticación al componente HeaderWeb -->
     <HeaderWeb :isAuthenticated="isAuthenticated"/>
-    <div v-if="user">
-      <p>Bienvenido, {{ user.EMAIL }}!</p>
-      <p>Tu ID es: {{ user.ID }}</p>
-    </div>
     <TextCarrusel/>
     <ImageCarrusel/>
     <FooterWeb/>
